@@ -1,0 +1,28 @@
+---
+import { involve } from '../../data/involve';
+import { homeAnchor } from '../../lib/url';
+import Button from '../ui/Button.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="colaborar" class="section bg-azul" aria-labelledby="colaborar-t">
+  <div class="container">
+    <SectionHeading id="colaborar-t" eyebrow="Sumate" title="¿Cómo podés colaborar?" />
+    <div class="cards" data-stagger>
+      {involve.map((c) => (
+        <article>
+          <h3>{c.title}</h3>
+          <p>{c.text}</p>
+          <Button href={homeAnchor(c.href.slice(1))} variant="secondary">{c.cta}</Button>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cards { display: grid; gap: 20px; }
+  article { background: #fff; padding: 28px; border-radius: var(--imp-radio); display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  article p { flex: 1; }
+  @media (min-width: 768px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+</style>

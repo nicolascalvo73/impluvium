@@ -1,0 +1,32 @@
+---
+import { about } from '../../data/about';
+---
+
+<section class="facts-wrap" aria-label="Datos destacados">
+  <div class="container">
+    <ul class="facts">
+      {about.keyFacts.map((f) => (
+        <li>
+          <span class="value" data-count={f.value}>{f.value}</span>
+          <span class="text"><strong>{f.label}</strong><span>{f.detail}</span></span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .facts-wrap { position: relative; z-index: 2; margin-top: -72px; }
+  .facts { display: grid; background: #fff; border-radius: var(--imp-radio); border: 1px solid var(--imp-gris-claro); }
+  li { display: flex; align-items: center; gap: 18px; padding: 20px 24px; }
+  li + li { border-top: 1px solid var(--imp-gris-claro); }
+  .value { font-size: 3rem; font-weight: 700; line-height: 1; color: var(--imp-accion); min-width: 1ch; }
+  .text { display: grid; }
+  strong { color: var(--imp-negro); font-size: 1.0625rem; }
+  .text span { font-size: 0.9375rem; color: var(--imp-texto); }
+  @media (min-width: 768px) {
+    .facts { grid-template-columns: repeat(3, 1fr); }
+    li { padding: 28px 32px; }
+    li + li { border-top: 0; border-left: 1px solid var(--imp-gris-claro); }
+  }
+</style>

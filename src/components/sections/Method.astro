@@ -1,0 +1,32 @@
+---
+import { method } from '../../data/method';
+import MunicipalityWheel from '../features/MunicipalityWheel.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="como-trabajamos" class="section" aria-labelledby="como-trabajamos-t">
+  <div class="container">
+    <SectionHeading id="como-trabajamos-t" eyebrow="Metodología" title="¿Cómo trabajamos?" lead={method.text} />
+    <ol class="cycle" aria-label="Ciclo de trabajo" data-stagger>
+      {method.cycle.map((step, i) => (
+        <li><span class="n">.{String(i + 1).padStart(2, '0')}</span><span class="s">{step}</span></li>
+      ))}
+    </ol>
+    <ul class="tools" aria-label="Herramientas" data-stagger>
+      {method.tools.map((t) => <li>{t}</li>)}
+    </ul>
+    <div class="wheel-wrap"><MunicipalityWheel /></div>
+  </div>
+</section>
+
+<style>
+  .cycle { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .cycle li { display: flex; flex-direction: column; gap: 2px; padding: 16px; border: 1px solid var(--imp-gris-claro); border-radius: var(--imp-radio); background: #fff; }
+  .n { font-weight: 700; color: var(--imp-accion); }
+  .s { font-weight: 700; color: var(--imp-negro); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.9375rem; overflow-wrap: anywhere; }
+  .tools { display: grid; gap: 10px; margin-top: 28px; font-size: 0.9375rem; }
+  .tools li { padding-left: 16px; position: relative; }
+  .tools li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; border-radius: 50%; background: var(--imp-accion); }
+  .wheel-wrap { margin-top: clamp(48px, 7vw, 88px); }
+  @media (min-width: 768px) { .cycle { grid-template-columns: repeat(4, minmax(0, 1fr)); } .cycle li { flex-direction: row; align-items: baseline; gap: 10px; padding: 18px 20px; } .tools { grid-template-columns: repeat(2, 1fr); gap: 10px 32px; } }
+</style>

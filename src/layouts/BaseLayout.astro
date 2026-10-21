@@ -1,0 +1,59 @@
+---
+import '@fontsource/encode-sans/latin-300.css';
+import '@fontsource/encode-sans/latin-400.css';
+import '@fontsource/encode-sans/latin-600.css';
+import '@fontsource/encode-sans/latin-700.css';
+import font400 from '@fontsource/encode-sans/files/encode-sans-latin-400-normal.woff2?url';
+import font700 from '@fontsource/encode-sans/files/encode-sans-latin-700-normal.woff2?url';
+import '../styles/tokens.css';
+import '../styles/global.css';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { site } from '../data/site';
+import { buildSeo } from '../lib/seo';
+
+interface Props { title: string; description?: string; current?: 'home' | 'programa' | 'blog'; path?: string }
+const { title, description = site.description, current = 'home', path = '/' } = Astro.props;
+const seo = buildSeo({ title, description, path });
+---
+
+<!doctype html>
+<html lang={site.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    <link rel="canonical" href={seo.canonical} />
+    <link rel="icon" type="image/svg+xml" href={seo.favicon} />
+    <link rel="preload" as="font" type="font/woff2" href={font400} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={font700} crossorigin />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content={site.fullName} />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:url" content={seo.canonical} />
+    <meta property="og:image" content={seo.image} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      // Si las animaciones no arrancan, se muestra todo en su estado final.
+      setTimeout(function () { if (!window.__motion) document.documentElement.classList.add('motion-failed'); }, 2500);
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(seo.jsonLd)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Ir al contenido</a>
+    <div class="progress" data-progress aria-hidden="true"></div>
+    <Header {current} />
+    <main id="contenido" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<script>
+  import '../lib/motion';
+</script>

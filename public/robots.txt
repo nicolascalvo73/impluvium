@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://labs.mondistudio.com.ar/impluvium/sitemap-index.xml

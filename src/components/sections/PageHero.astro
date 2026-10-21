@@ -1,0 +1,19 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+interface Props { id: string; eyebrow: string; title: string; tone: 'crema' | 'azul'; lead?: string }
+const { id, eyebrow, title, tone, lead } = Astro.props;
+---
+
+<section class={`page-hero bg-${tone}`} aria-labelledby={id}>
+  <div class="container">
+    <SectionHeading as="h1" {id} {eyebrow} {title} {lead} />
+    <slot />
+  </div>
+</section>
+
+<style>
+  .page-hero { padding-block: clamp(56px, 9vw, 112px) clamp(40px, 6vw, 72px); }
+  .page-hero :global(.section-head) { margin-bottom: 0; }
+  .page-hero :global(h1) { max-width: 16ch; }
+  .page-hero :global(.lead) { max-width: 52ch; }
+</style>

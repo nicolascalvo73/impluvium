@@ -1,0 +1,55 @@
+/*
+  IMPLUVIUM ac — tokens de diseño.
+  Los acentos (mostaza, terracota, verde, turquesa, naranja, celeste) NO se usan para texto:
+  solo fondos, ilustraciones, íconos y detalles. Texto: negro, --imp-texto o --imp-accion.
+*/
+:root {
+  /* Neutros */
+  --imp-negro: #000000;
+  --imp-texto: #444444;
+  --imp-gris: #666666;
+  --imp-gris-claro: #cccccc;
+  --imp-blanco: #ffffff;
+  --imp-neutro-fondo: #f9f9f9;
+
+  /* Fondos tintados por sección */
+  --imp-fondo-azul: #e9f0f5;
+  --imp-fondo-crema: #f7f0df;
+  --imp-fondo-durazno: #f7ebe3;
+
+  /* Acentos (solo detalle, nunca texto) */
+  --imp-azul: #4681b7;
+  --imp-azul-oscuro: #446889;
+  --imp-azul-claro: #a4c5e2;
+  --imp-mostaza: #b99320;
+  --imp-mostaza-claro: #e3ce8d;
+  --imp-terracota: #bd682e;
+  --imp-terracota-claro: #e6b695;
+  --imp-verde-suave: #b1d199;
+
+  /* Rueda del municipio */
+  --imp-urbano: #0a9a9f;
+  --imp-humano: #74a05e;
+  --imp-economico: #f39d35;
+  --imp-gobierno: #519cd0;
+  --imp-marino: #1d5276;
+
+  /* Acción */
+  --imp-accion: #1d5276;
+  --imp-accion-hover: #143b56;
+
+  /* Tipografía */
+  --imp-font: 'Encode Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Layout */
+  --imp-contenedor: 1248px;
+  --imp-gutter: 20px;
+  --imp-header-h: 72px;
+  --imp-radio: 4px;
+  --imp-seccion-y: clamp(56px, 8vw, 112px);
+
+  /* Escala fluida */
+  --imp-fs-h1: clamp(2.25rem, 1.3rem + 4.2vw, 4.25rem);
+  --imp-fs-h2: clamp(1.75rem, 1.2rem + 2.2vw, 2.75rem);
+  --imp-fs-h3: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);
+}

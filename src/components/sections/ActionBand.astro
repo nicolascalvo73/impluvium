@@ -1,0 +1,19 @@
+---
+import Button from '../ui/Button.astro';
+interface Props { title: string; label: string; href: string }
+const { title, label, href } = Astro.props;
+---
+
+<section class="band-action" aria-label={title}>
+  <div class="container inner" data-stagger>
+    <h2>{title}</h2>
+    <Button {href} variant="light">{label}</Button>
+  </div>
+</section>
+
+<style>
+  .band-action { background: var(--imp-accion); padding-block: clamp(48px, 7vw, 88px); }
+  .inner { display: grid; gap: 24px; align-items: center; justify-items: start; }
+  h2 { color: #fff; max-width: 14ch; }
+  @media (min-width: 768px) { .inner { grid-template-columns: 1fr auto; } }
+</style>

@@ -1,0 +1,28 @@
+---
+import { restoration } from '../../data/restoration';
+import { url } from '../../lib/url';
+import Button from '../ui/Button.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="programa" class="section bg-crema" aria-labelledby="programa-t">
+  <div class="container">
+    <SectionHeading id="programa-t" eyebrow={restoration.title} title="¿Cómo funciona el programa de restauración?" />
+    <ol class="grid" data-stagger>
+      {restoration.stages.map((s) => (
+        <li><span class="n">.{String(s.n).padStart(2, '0')}</span><span class="t">{s.title}</span></li>
+      ))}
+    </ol>
+    <div class="cta" data-reveal><Button href={url('/programa-de-restauracion')}>Ver el programa completo</Button></div>
+  </div>
+</section>
+
+<style>
+  .grid { display: grid; gap: 12px; }
+  li { display: flex; align-items: baseline; gap: 14px; padding: 20px 22px; background: #fff; border-radius: var(--imp-radio); }
+  .n { font-weight: 700; font-size: 1.5rem; color: var(--imp-accion); }
+  .t { font-weight: 700; color: var(--imp-negro); }
+  .cta { margin-top: 32px; }
+  @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1000px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+</style>

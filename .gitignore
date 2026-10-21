@@ -1,0 +1,24 @@
+# Material interno y de terceros: NO va al repositorio (el repo es público)
+fuentes/
+referencias/
+capturas_referencias/
+diseno/
+assets/
+REFERENCIAS.md
+LINEAMIENTOS-DISENO.md
+CONTENIDO.md
+research.json
+design.md
+stack.md
+design-tokens.css
+design-tokens.json
+
+# Dependencias, build y herramientas locales
+node_modules/
+dist/
+.astro/
+.playwright-mcp/
+.env
+.env.*
+.DS_Store
+Thumbs.db

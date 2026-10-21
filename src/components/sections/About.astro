@@ -1,0 +1,34 @@
+---
+import { about } from '../../data/about';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section id="quienes-somos" class="section" aria-labelledby="que-es">
+  <div class="container grid">
+    <div>
+      <SectionHeading id="que-es" eyebrow="Quiénes somos" title="¿Qué es IMPLUVIUM?" lead={about.definition} />
+      <div class="who" data-stagger>
+        {about.who.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+    <aside class="believe bg-azul" aria-labelledby="creemos" data-reveal>
+      <h3 id="creemos">Creemos en</h3>
+      <ol data-stagger>
+        {about.believe.map((b, i) => (
+          <li><span class="num">{String(i + 1).padStart(2, '0')}</span><span>{b}</span></li>
+        ))}
+      </ol>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .grid { display: grid; gap: 40px; }
+  .who { max-width: 62ch; font-weight: 300; font-size: 1.0625rem; }
+  .believe { padding: clamp(24px, 4vw, 40px); border-radius: var(--imp-radio); align-self: start; }
+  h3 { margin-bottom: 20px; }
+  ol { display: grid; gap: 18px; }
+  li { display: grid; grid-template-columns: 36px 1fr; gap: 10px; font-size: 0.9375rem; }
+  .num { font-weight: 700; color: var(--imp-accion); }
+  @media (min-width: 960px) { .grid { grid-template-columns: 1.2fr 1fr; gap: 72px; } }
+</style>

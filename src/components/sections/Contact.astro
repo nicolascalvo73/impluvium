@@ -1,0 +1,40 @@
+---
+import { site } from '../../data/site';
+import Button from '../ui/Button.astro';
+import FormField from '../ui/FormField.astro';
+---
+
+<section id="contacto" class="section" aria-labelledby="contacto-t">
+  <div class="container wrap" data-stagger>
+    <div>
+      <p class="eyebrow">Contacto</p>
+      <h2 id="contacto-t">¿Hablamos?</h2>
+      <address>
+        <p>{site.address}</p>
+        <p>
+          {site.phones.map((p, i) => (<>{i > 0 && ' / '}<a href={p.href}>{p.label}</a></>))}
+        </p>
+        <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+      </address>
+    </div>
+    <form class="form" data-form="contact" novalidate>
+      <FormField id="ct-name" name="name" label="Nombre" autocomplete="name" />
+      <FormField id="ct-email" name="email" label="Correo electrónico" type="email" autocomplete="email" />
+      <FormField id="ct-message" name="message" label="Mensaje" type="textarea" />
+      <div><Button type="submit">Enviar</Button></div>
+      <p class="form-status" data-status hidden tabindex="-1" role="status">¡Gracias! Esta es una maqueta: por ahora no se envió ningún dato. Podés escribirnos a {site.email}.</p>
+    </form>
+  </div>
+</section>
+
+<style>
+  .wrap { display: grid; gap: 40px; }
+  address { font-style: normal; margin-top: 24px; display: grid; gap: 6px; }
+  address p + p { margin-top: 0; }
+  @media (min-width: 900px) { .wrap { grid-template-columns: 1fr 1fr; gap: 80px; } }
+</style>
+
+<script>
+  import { initForm } from '../../lib/forms';
+  document.querySelectorAll<HTMLFormElement>('form[data-form="contact"]').forEach(initForm);
+</script>

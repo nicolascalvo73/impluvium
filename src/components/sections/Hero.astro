@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import heroPhoto from '../../assets/photos/obispo-mercadillo-1.jpg';
+import isotipo from '../../assets/logo/impluvium-isotipo-blanco.svg';
+import { about, } from '../../data/about';
+import { site } from '../../data/site';
+import { homeAnchor, url } from '../../lib/url';
+import Button from '../ui/Button.astro';
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <Image
+    src={heroPhoto}
+    alt=""
+    widths={[640, 960, 1280, 1920]}
+    sizes="100vw"
+    format="webp"
+    quality={72}
+    loading="eager"
+    fetchpriority="high"
+    class="photo"
+    data-hero-photo
+  />
+  <div class="shade" aria-hidden="true"></div>
+  <div class="container content">
+    <img src={isotipo.src} alt="" width="44" height="68" class="mark" data-hero="mark" />
+    <p class="eyebrow" data-hero="eyebrow">Asociación civil · {site.city}</p>
+    <h1 id="hero-title" data-hero="title">{site.tagline}</h1>
+    <p class="support" data-hero="support">{about.definition}</p>
+    <div class="actions" data-hero="actions">
+      <Button href={url('/programa-de-restauracion')} variant="light">Conocé el programa de restauración</Button>
+      <Button href={homeAnchor('contacto')} variant="light" class="outline">Contactanos</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { position: relative; isolation: isolate; overflow: hidden; color: #fff; padding-block: 56px 120px; min-height: min(86vh, 760px); display: flex; align-items: center; }
+  .photo { position: absolute; inset: -8% 0; width: 100%; height: 116%; object-fit: cover; object-position: 30% 50%; z-index: -2; }
+  /* Capa oscura plana (sin degradado). La opacidad se verifica por contraste en la revisión. */
+  .shade { position: absolute; inset: 0; z-index: -1; background: rgba(0, 0, 0, 0.66); }
+  .content { display: grid; gap: 20px; justify-items: start; }
+  .mark { height: 68px; width: auto; }
+  .eyebrow { color: #fff; margin: 0; }
+  h1 { color: #fff; max-width: 14ch; }
+  .support { font-size: 1.125rem; font-weight: 300; max-width: 56ch; color: #fff; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .actions :global(.btn-light.outline) { background: transparent; color: #fff; }
+  .actions :global(.btn-light.outline:hover) { background: #fff; color: var(--imp-accion); }
+  @media (max-width: 480px) { .actions :global(.btn) { width: 100%; } }
+</style>

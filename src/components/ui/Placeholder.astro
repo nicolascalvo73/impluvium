@@ -1,0 +1,11 @@
+---
+/** Marcador visible para datos que aún no están definidos. No se rellena. */
+interface Props { text: string; inline?: boolean }
+const { text, inline = false } = Astro.props;
+---
+
+<span class:list={['placeholder', { inline }]}>{text}</span>
+
+<style>
+  .placeholder { display: inline-block; font-size: 0.875rem; color: #4a4a4a; background: #f0f0f0; border: 1px dashed var(--imp-gris); padding: 2px 8px; border-radius: 2px; }
+</style>

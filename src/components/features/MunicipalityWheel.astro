@@ -1,0 +1,134 @@
+---
+import { wheel } from '../../data/wheel';
+
+const CX = 200, CY = 200, R_OUT = 190, R_IN = 72, GAP = 1.4;
+// Cuadrantes en sentido horario desde la izquierda-arriba: urbano, humano, económico, gobierno.
+const START: Record<string, number> = { urbano: 180, humano: 270, economico: 0, gobierno: 90 };
+
+const pt = (r: number, deg: number) => {
+  const a = (deg * Math.PI) / 180;
+  return `${(CX + r * Math.cos(a)).toFixed(2)} ${(CY + r * Math.sin(a)).toFixed(2)}`;
+};
+const sector = (start: number) => {
+  const a0 = start + GAP, a1 = start + 90 - GAP;
+  return `M ${pt(R_OUT, a0)} A ${R_OUT} ${R_OUT} 0 0 1 ${pt(R_OUT, a1)} L ${pt(R_IN, a1)} A ${R_IN} ${R_IN} 0 0 0 ${pt(R_IN, a0)} Z`;
+};
+const labelPos = (start: number) => pt(132, start + 45).split(' ').map(Number);
+
+const quadrants = wheel.areas.map((area) => {
+  const [x, y] = labelPos(START[area.id]);
+  const lines = area.name.toUpperCase().split(' ');
+  return { ...area, d: sector(START[area.id]), x, y, lines };
+});
+---
+
+<div class="wheel" data-wheel>
+  <svg viewBox="0 0 400 400" role="group" aria-label={`${wheel.title} Rueda con cuatro áreas. Elegí una para ver su detalle.`}>
+    {quadrants.map((q) => (
+      <g
+        class="quad"
+        data-area={q.id}
+        role="button"
+        tabindex="0"
+        aria-expanded={q.highlighted ? 'true' : 'false'}
+        aria-controls={`panel-${q.id}`}
+        aria-label={`${q.name}${q.highlighted ? '. Es donde colabora IMPLUVIUM' : ''}`}
+      >
+        <path d={q.d} fill={q.color} />
+        <text x={q.x} y={q.y} text-anchor="middle" dominant-baseline="middle">
+          {q.lines.map((line, i) => (
+            <tspan x={q.x} dy={i === 0 ? `-${(q.lines.length - 1) * 0.6}em` : '1.2em'}>{line}</tspan>
+          ))}
+        </text>
+      </g>
+    ))}
+    <circle cx={CX} cy={CY} r={R_IN - 6} fill="#1D5276" />
+    <text x={CX} y={CY} text-anchor="middle" dominant-baseline="middle" class="center-label">{wheel.center}</text>
+  </svg>
+
+  <div class="accordion">
+    <h3 class="acc-title">{wheel.title}</h3>
+    {quadrants.map((q) => (
+      <div class="item">
+        <h4>
+          <button type="button" data-area={q.id} aria-expanded={q.highlighted ? 'true' : 'false'} aria-controls={`panel-${q.id}`} id={`btn-${q.id}`}>
+            <span class="swatch" style={`background:${q.color}`} aria-hidden="true"></span>
+            <span class="name">{q.name}</span>
+            <span class="chev" aria-hidden="true"></span>
+          </button>
+        </h4>
+        <div id={`panel-${q.id}`} role="region" aria-labelledby={`btn-${q.id}`} data-panel={q.id} hidden={!q.highlighted}>
+          <ul class="components">
+            {q.components.map((c) => <li>{c}</li>)}
+          </ul>
+          {q.highlighted && (
+            <div class="collab">
+              <p class="collab-title">Dónde colabora IMPLUVIUM</p>
+              <p>{wheel.collaborates.join(' · ')}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    ))}
+    <p class="hint">Tocá o elegí un cuadrante para ver su detalle.</p>
+  </div>
+</div>
+
+<style>
+  .wheel { display: grid; gap: 32px; align-items: center; }
+  svg { width: 100%; max-width: 440px; margin-inline: auto; height: auto; overflow: visible; }
+  .quad { cursor: pointer; outline: none; }
+  .quad path { fill-opacity: 0.55; stroke: transparent; stroke-width: 4; transition: fill-opacity 0.2s; }
+  .quad text { font-size: 14px; font-weight: 700; fill: #000; letter-spacing: 0.04em; pointer-events: none; }
+  .quad:hover path { fill-opacity: 0.8; }
+  .quad[aria-expanded='true'] path { fill-opacity: 1; stroke: #1d5276; }
+  .quad:focus-visible path { stroke: #000; stroke-width: 5; stroke-dasharray: 10 5; }
+  .center-label { font-size: 17px; font-weight: 700; fill: #fff; letter-spacing: 0.08em; }
+
+  .accordion { display: grid; gap: 0; }
+  .acc-title { margin-bottom: 12px; }
+  .item { border-top: 1px solid var(--imp-gris-claro); }
+  .item:last-of-type { border-bottom: 1px solid var(--imp-gris-claro); }
+  h4 { margin: 0; font-size: 1rem; }
+  button { width: 100%; display: flex; align-items: center; gap: 14px; min-height: 56px; padding: 10px 4px; background: none; border: 0; cursor: pointer; font: inherit; font-weight: 700; color: var(--imp-negro); text-align: left; }
+  .swatch { width: 16px; height: 16px; border-radius: 2px; flex: none; }
+  .name { flex: 1; }
+  .chev { width: 10px; height: 10px; border-right: 2px solid var(--imp-negro); border-bottom: 2px solid var(--imp-negro); transform: rotate(45deg); transition: transform 0.2s; }
+  button[aria-expanded='true'] .chev { transform: rotate(-135deg); }
+  [data-panel] { padding: 0 4px 18px 34px; }
+  .components { display: grid; gap: 4px; }
+  .components li::before { content: '– '; }
+  .collab { margin-top: 14px; padding: 12px 14px; background: var(--imp-fondo-azul); border-left: 4px solid var(--imp-marino); }
+  .collab-title { font-weight: 700; color: var(--imp-negro); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .hint { margin-top: 12px; font-size: 0.875rem; color: var(--imp-gris); }
+
+  @media (min-width: 900px) { .wheel { grid-template-columns: 1fr 1fr; gap: 64px; } }
+  @media (prefers-reduced-motion: reduce) { .quad path, .chev { transition: none; } }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-wheel]').forEach((root) => {
+    const controls = [...root.querySelectorAll<HTMLElement>('[data-area]')];
+    const panels = [...root.querySelectorAll<HTMLElement>('[data-panel]')];
+    const quads = controls.filter((el) => el.classList.contains('quad'));
+
+    const select = (id: string | null) => {
+      controls.forEach((el) => el.setAttribute('aria-expanded', String(el.dataset.area === id)));
+      panels.forEach((p) => { p.hidden = p.dataset.panel !== id; });
+      root.dispatchEvent(new CustomEvent('wheel:select', { detail: { id } }));
+    };
+    const toggle = (id: string) => {
+      const open = root.querySelector(`[data-panel="${id}"]`)?.hasAttribute('hidden') === false;
+      select(open ? null : id);
+    };
+
+    controls.forEach((el) => el.addEventListener('click', () => toggle(el.dataset.area!)));
+    quads.forEach((el, i) => {
+      el.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(el.dataset.area!); }
+        const step = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+        if (step) { e.preventDefault(); quads[(i + step + quads.length) % quads.length].focus(); }
+      });
+    });
+  });
+</script>

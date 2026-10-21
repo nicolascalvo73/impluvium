@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import { url } from '../../lib/url';
+import Button from '../ui/Button.astro';
+import PostCard from '../ui/PostCard.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3);
+---
+
+<section id="blog" class="section" aria-labelledby="blog-t">
+  <div class="container">
+    <div class="head">
+      <SectionHeading id="blog-t" eyebrow="Blog" title="¿Qué hay de nuevo?" />
+      <Button href={url('/blog')} variant="secondary">Conocé todas las entradas</Button>
+    </div>
+    <div class="list" data-stagger>
+      {posts.map((post) => <PostCard {post} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .head { display: grid; gap: 4px; align-items: end; margin-bottom: 0; }
+  .head :global(.section-head) { margin-bottom: 16px; }
+  .head :global(.btn) { justify-self: start; margin-bottom: 32px; }
+  .list { display: grid; gap: 36px; }
+  @media (min-width: 640px) { .list { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .list { grid-template-columns: repeat(3, 1fr); } .head { grid-template-columns: 1fr auto; } .head :global(.btn) { justify-self: end; } }
+</style>

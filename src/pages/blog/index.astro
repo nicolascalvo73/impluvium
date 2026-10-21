@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/sections/PageHero.astro';
+import Newsletter from '../../components/sections/Newsletter.astro';
+import Contact from '../../components/sections/Contact.astro';
+import PostCard from '../../components/ui/PostCard.astro';
+import SampleTag from '../../components/ui/SampleTag.astro';
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Blog" description="Novedades de proyectos y gestión urbana de IMPLUVIUM ac." path="/blog" current="blog">
+  <PageHero id="blog-titulo" tone="azul" eyebrow="Blog" title="¿Qué hay de nuevo?">
+    <p class="sample"><SampleTag /> Los títulos y textos de esta página son provisorios.</p>
+  </PageHero>
+
+  <section class="section" aria-label="Entradas del blog">
+    <div class="container list" data-stagger>
+      {posts.map((post) => <PostCard {post} headingLevel="h2" />)}
+    </div>
+  </section>
+
+  <Newsletter />
+  <Contact />
+</BaseLayout>
+
+<style>
+  .sample { margin-top: 16px; font-size: 0.9375rem; }
+  .list { display: grid; gap: 44px 28px; }
+  @media (min-width: 640px) { .list { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .list { grid-template-columns: repeat(3, 1fr); } }
+</style>

@@ -1,0 +1,40 @@
+---
+import isotipo from '../../assets/logo/impluvium-isotipo-gris.svg';
+import { navItems } from '../../data/nav';
+import { site } from '../../data/site';
+import Placeholder from '../ui/Placeholder.astro';
+import { homeAnchor, url } from '../../lib/url';
+
+const resolve = (href: string) => (href.startsWith('#') ? homeAnchor(href.slice(1)) : url(href));
+---
+
+<footer class="site-footer">
+  <div class="container inner">
+    <div class="brand">
+      <img src={isotipo.src} alt="" width="34" height="52" />
+      <div>
+        <p class="wordmark">{site.name} <span class="ac">{site.suffix}</span></p>
+        <p class="tag">{site.tagline}</p>
+      </div>
+    </div>
+    <nav aria-label="Pie de página">
+      <ul>
+        {navItems.map((item) => <li><a href={resolve(item.href)}>{item.label}</a></li>)}
+        <li><Placeholder text="Política de privacidad: a definir" /></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .site-footer { border-top: 1px solid var(--imp-gris-claro); padding-block: 40px; }
+  .inner { display: grid; gap: 28px; }
+  .brand { display: flex; gap: 14px; align-items: center; }
+  .wordmark { font-weight: 700; color: var(--imp-negro); }
+  .ac { text-transform: lowercase; }
+  .tag { font-size: 0.875rem; color: var(--imp-gris); }
+  ul { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  a { color: var(--imp-texto); text-decoration: none; font-size: 0.9375rem; display: inline-block; padding: 6px 0; }
+  a:hover { color: var(--imp-accion); text-decoration: underline; }
+  @media (min-width: 900px) { .inner { grid-template-columns: auto 1fr; align-items: start; } nav { justify-self: end; max-width: 640px; } ul { justify-content: flex-end; } }
+</style>

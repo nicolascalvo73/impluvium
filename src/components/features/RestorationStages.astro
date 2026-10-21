@@ -1,0 +1,38 @@
+---
+import type { RestorationStage } from '../../types';
+interface Props { stages: RestorationStage[] }
+const { stages } = Astro.props;
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+
+<div class="stages">
+  {stages.map((s, i) => (
+    <details name="etapas" open={i === 0}>
+      <summary>
+        <span class="n">.{pad(s.n)}</span>
+        <span class="t">{s.title}</span>
+        <span class="plus" aria-hidden="true"></span>
+      </summary>
+      <ul>
+        {s.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </details>
+  ))}
+</div>
+
+<style>
+  .stages { border-top: 1px solid var(--imp-gris-claro); }
+  details { border-bottom: 1px solid var(--imp-gris-claro); }
+  summary { display: grid; grid-template-columns: 56px 1fr 24px; align-items: center; gap: 8px; min-height: 64px; padding: 12px 0; cursor: pointer; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  .n { font-weight: 700; font-size: 1.5rem; color: var(--imp-accion); }
+  .t { font-weight: 700; color: var(--imp-negro); font-size: 1.125rem; line-height: 1.25; }
+  .plus { position: relative; width: 14px; height: 14px; justify-self: end; }
+  .plus::before, .plus::after { content: ''; position: absolute; background: var(--imp-accion); }
+  .plus::before { left: 0; right: 0; top: 6px; height: 2px; }
+  .plus::after { top: 0; bottom: 0; left: 6px; width: 2px; }
+  details[open] .plus::after { display: none; }
+  ul { display: grid; gap: 10px; padding: 0 0 22px 64px; }
+  li { position: relative; padding-left: 20px; }
+  li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 8px; height: 8px; border-radius: 50%; background: var(--imp-accion); }
+</style>

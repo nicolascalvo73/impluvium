@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+import photo from '../assets/photos/mercado-alberdi-2.jpg';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/sections/PageHero.astro';
+import ActionBand from '../components/sections/ActionBand.astro';
+import Newsletter from '../components/sections/Newsletter.astro';
+import Contact from '../components/sections/Contact.astro';
+import RestorationStages from '../components/features/RestorationStages.astro';
+import { restoration } from '../data/restoration';
+import { homeAnchor } from '../lib/url';
+---
+
+<BaseLayout
+  title="Programa de restauración"
+  description="Programa de restauración de edificios públicos patrimoniales: seis etapas de gestión, desde la firma de convenios hasta el programa de gestión cultural."
+  path="/programa-de-restauracion"
+  current="programa"
+>
+  <PageHero
+    id="programa-titulo"
+    tone="crema"
+    eyebrow={restoration.title}
+    title="¿Cómo funciona el programa de restauración?"
+    lead="Seis etapas de gestión, desde la firma de convenios hasta el programa de gestión cultural."
+  />
+
+  <section class="section" aria-labelledby="etapas">
+    <div class="container layout">
+      <figure data-reveal>
+        <div class="frame">
+          <Image src={photo} alt="Restauración del Mercado de Alberdi, Córdoba" width={640} height={800} widths={[480, 640, 960]} sizes="(min-width: 900px) 40vw, 92vw" format="webp" quality={72} loading="lazy" />
+        </div>
+        <figcaption>Restauración Mercado de Alberdi — Ciudad de Córdoba, Córdoba</figcaption>
+      </figure>
+      <div data-reveal>
+        <h2 id="etapas" class="stages-title">Etapas de gestión</h2>
+        <RestorationStages stages={restoration.stages} />
+      </div>
+    </div>
+  </section>
+
+  <ActionBand title="¿Cómo sumarse al programa?" label="Contactanos" href={homeAnchor('contacto')} />
+  <Newsletter />
+  <Contact />
+</BaseLayout>
+
+<style>
+  .layout { display: grid; gap: 40px; }
+  figure { margin: 0; align-self: start; }
+  .frame { aspect-ratio: 4 / 5; overflow: hidden; }
+  .frame :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  figcaption { margin-top: 10px; font-size: 0.875rem; color: var(--imp-gris); }
+  .stages-title { font-size: var(--imp-fs-h3); margin-bottom: 20px; }
+  @media (min-width: 900px) { .layout { grid-template-columns: 5fr 6fr; gap: 72px; } figure { position: sticky; top: calc(var(--imp-header-h) + 24px); } }
+</style>

@@ -1,0 +1,37 @@
+---
+import FormField from '../ui/FormField.astro';
+import Button from '../ui/Button.astro';
+import Placeholder from '../ui/Placeholder.astro';
+---
+
+<section id="newsletter" class="section bg-durazno" aria-labelledby="newsletter-t">
+  <div class="container wrap" data-stagger>
+    <div>
+      <p class="eyebrow">Newsletter</p>
+      <h2 id="newsletter-t">Una vez por mes, novedades de proyectos y gestión urbana</h2>
+    </div>
+    <form class="form" data-form="newsletter" novalidate>
+      <FormField id="nl-email" name="email" label="Correo electrónico" type="email" placeholder="nombre@correo.com" autocomplete="email" />
+      <div class="field">
+        <label class="check" for="nl-consent">
+          <input type="checkbox" id="nl-consent" name="consent" data-validate aria-describedby="nl-consent-error" />
+          <span>Acepto recibir novedades de IMPLUVIUM ac. Más información en la <Placeholder text="política de privacidad (a definir)" />.</span>
+        </label>
+        <p class="field-error" id="nl-consent-error" data-error-for="nl-consent" aria-live="polite"></p>
+      </div>
+      <div><Button type="submit">Suscribite</Button></div>
+      <p class="form-status" data-status hidden tabindex="-1" role="status">¡Listo! Esta es una maqueta: por ahora no se envió ningún dato.</p>
+    </form>
+  </div>
+</section>
+
+<style>
+  .wrap { display: grid; gap: 32px; align-items: center; }
+  h2 { font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem); max-width: 22ch; }
+  @media (min-width: 900px) { .wrap { grid-template-columns: 1fr 1fr; gap: 80px; } }
+</style>
+
+<script>
+  import { initForm } from '../../lib/forms';
+  document.querySelectorAll<HTMLFormElement>('form[data-form="newsletter"]').forEach(initForm);
+</script>
