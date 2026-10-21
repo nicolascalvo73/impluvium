@@ -5,26 +5,27 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Permisos mínimos por defecto; el job de deploy pide los que necesita.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-      - uses: withastro/action@v6
-        # Sin overrides: usa los defaults de astro.config.mjs (labs.mondistudio.com.ar/impluvium),
-        # que ya es el dominio real detrás del proxy de labs-hub.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: withastro/action@3eafd002e65cc31b4f0eae0bb05450d521562247 # v6
+        # Sin overrides: usa los defaults de astro.config.mjs (labs.mondistudio.com.ar/impluvium).
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5
