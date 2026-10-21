@@ -31,6 +31,9 @@ export function initHero(): void {
     gsap.set(title, { opacity: 1 });
   }
 
+  // El contenedor de los botones está oculto por CSS; se muestra de inmediato y se animan sus hijos.
+  gsap.set('[data-hero="actions"]', { opacity: 1 });
+
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
   if (photo) tl.fromTo(photo, { scale: 1.09 }, { scale: 1, duration: 1.8, ease: 'power2.out' }, 0);
   if (shade) tl.fromTo(shade, { opacity: 0 }, { opacity: 1, duration: 0.8, ease: 'power1.out' }, 0);

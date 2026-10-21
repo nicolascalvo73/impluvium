@@ -1,7 +1,10 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-/** [data-reveal]: aparece subiendo. [data-stagger]: sus hijos aparecen en cascada. [data-img-reveal]: cortina + zoom. */
+/**
+ * Nota: no usar clearProps sobre opacity ni clipPath: el CSS inicial (global.css) los oculta y volvería a aplicarse.
+ * [data-reveal]: aparece subiendo. [data-stagger]: sus hijos aparecen en cascada. [data-img-reveal]: cortina + zoom.
+ */
 export function initReveals(): void {
   const singles = gsap.utils.toArray<HTMLElement>('[data-reveal]');
   gsap.set(singles, { y: 18 });
@@ -31,7 +34,7 @@ export function initReveals(): void {
       start: 'top 96%',
       once: true,
       onEnter: () => {
-        gsap.to(frame, { clipPath: 'inset(0 0 0% 0)', duration: 0.8, ease: 'power3.inOut', clearProps: 'clipPath' });
+        gsap.to(frame, { clipPath: 'inset(0 0 0% 0)', duration: 0.8, ease: 'power3.inOut' });
         if (img) gsap.to(img, { scale: 1, duration: 1.1, ease: 'power3.out', clearProps: 'transform' });
       },
     });
@@ -44,7 +47,7 @@ export function initReveals(): void {
     end: 'max',
     onEnter: () => {
       gsap.to('[data-reveal], [data-stagger] > *', { opacity: 1, y: 0, duration: 0.5, overwrite: 'auto', clearProps: 'transform' });
-      gsap.to('[data-img-reveal]', { clipPath: 'inset(0 0 0% 0)', duration: 0.5, overwrite: 'auto', clearProps: 'clipPath' });
+      gsap.to('[data-img-reveal]', { clipPath: 'inset(0 0 0% 0)', duration: 0.5, overwrite: 'auto' });
     },
   });
 }
