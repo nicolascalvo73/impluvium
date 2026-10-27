@@ -22,3 +22,6 @@ dist/
 .env.*
 .DS_Store
 Thumbs.db
+
+# Videos de lanzamiento (brag)
+brag-output/
