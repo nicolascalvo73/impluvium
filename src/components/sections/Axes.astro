@@ -13,20 +13,14 @@ import SectionHeading from '../ui/SectionHeading.astro';
         <article class={`card tone-${axis.tone}`} aria-labelledby={`eje-${axis.id}`} data-tilt>
           <Image src={axis.illustration} alt="" widths={[320, 520]} sizes="(min-width: 1024px) 280px, 70vw" format="webp" class="ill" data-tilt-art />
           <h3 id={`eje-${axis.id}`}>{axis.title}</h3>
-          <ul class="preview">
-            {axis.items.slice(0, 2).map((item) => <li>{item.title}</li>)}
+          <ul class="full">
+            {axis.items.map((item) => (
+              <li>
+                {item.title}
+                {item.subitems && <ul>{item.subitems.map((s) => <li>{s}</li>)}</ul>}
+              </li>
+            ))}
           </ul>
-          <details>
-            <summary>Ver más<span class="visually-hidden"> sobre {axis.title}</span></summary>
-            <ul class="full">
-              {axis.items.map((item) => (
-                <li>
-                  {item.title}
-                  {item.subitems && <ul>{item.subitems.map((s) => <li>{s}</li>)}</ul>}
-                </li>
-              ))}
-            </ul>
-          </details>
         </article>
       ))}
     </div>
@@ -42,13 +36,9 @@ import SectionHeading from '../ui/SectionHeading.astro';
   .tone-verde { background: #eaf3e2; }
   .ill { width: 100%; max-height: 170px; object-fit: contain; object-position: left center; margin-bottom: 4px; }
   ul { display: grid; gap: 10px; font-size: 0.9375rem; }
-  .preview li, .full > li { padding-left: 16px; position: relative; }
-  .preview li::before, .full > li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; border-radius: 50%; background: var(--imp-accion); }
+  .full > li { padding-left: 16px; position: relative; }
+  .full > li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; border-radius: 50%; background: var(--imp-accion); }
   .full ul { margin-top: 8px; padding-left: 4px; border-left: 2px solid rgba(0,0,0,.2); padding-left: 12px; color: var(--imp-texto); font-size: 0.875rem; }
-  .full { margin-top: 14px; }
-  details { margin-top: auto; padding-top: 6px; }
-  summary { cursor: pointer; font-weight: 600; color: var(--imp-accion); text-decoration: underline; text-underline-offset: 3px; min-height: 32px; display: inline-flex; align-items: center; }
-  .card:has(details[open]) .preview { display: none; }
   @media (min-width: 640px) { .cards { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 1100px) { .cards { grid-template-columns: repeat(4, 1fr); } }
 </style>

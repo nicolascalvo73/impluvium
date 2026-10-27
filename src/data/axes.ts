@@ -7,35 +7,6 @@ import type { Axis } from '../types';
 /** Color por eje: propuesta de diseño (no definida por el cliente). */
 export const axes: Axis[] = [
   {
-    id: 'educacion',
-    title: 'Educación',
-    tone: 'azul',
-    illustration: azul,
-    items: [
-      { title: 'Programas educativos sobre el valor del espacio urbano como sede de la identidad colectiva, orientado a la Educación Primaria' },
-      { title: 'Programas educativos sobre educación mediada por tecnologías, orientado a la Educación Primaria' },
-      {
-        title: 'Programa de actualización en gestión para agentes de la administración pública',
-        subitems: ['Charlas-capacitaciones sobre cambios en el mundo laboral en la época actual'],
-      },
-    ],
-  },
-  {
-    id: 'cultura',
-    title: 'Cultura',
-    tone: 'durazno',
-    illustration: terracota,
-    items: [
-      {
-        title: 'Eventos para el desarrollo y afirmación de la identidad local',
-        subitems: [
-          'Desarrollo de instalación conceptual y poética-musical con eje en la sensibilización sobre el habitar urbano, el espacio de lo público y la vida en comunidad',
-        ],
-      },
-      { title: 'Puesta en valor de bienes y servicios locales y regionales' },
-    ],
-  },
-  {
     id: 'urbanismo',
     title: 'Urbanismo',
     tone: 'crema',
@@ -68,6 +39,35 @@ export const axes: Axis[] = [
           'Concursos de ideas orientados a profesionales de la arquitectura en relación a mejoras de espacios públicos, con eje en la identidad local y regional',
         ],
       },
+    ],
+  },
+  {
+    id: 'educacion',
+    title: 'Educación',
+    tone: 'azul',
+    illustration: azul,
+    items: [
+      { title: 'Programas educativos sobre el valor del espacio urbano como sede de la identidad colectiva, orientado a la Educación Primaria' },
+      { title: 'Programas educativos sobre educación mediada por tecnologías, orientado a la Educación Primaria' },
+      {
+        title: 'Programa de actualización en gestión para agentes de la administración pública',
+        subitems: ['Charlas-capacitaciones sobre cambios en el mundo laboral en la época actual'],
+      },
+    ],
+  },
+  {
+    id: 'cultura',
+    title: 'Cultura',
+    tone: 'durazno',
+    illustration: terracota,
+    items: [
+      {
+        title: 'Eventos para el desarrollo y afirmación de la identidad local',
+        subitems: [
+          'Desarrollo de instalación conceptual y poética-musical con eje en la sensibilización sobre el habitar urbano, el espacio de lo público y la vida en comunidad',
+        ],
+      },
+      { title: 'Puesta en valor de bienes y servicios locales y regionales' },
     ],
   },
 ];
