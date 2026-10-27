@@ -1,7 +1,3 @@
-import azul from '../assets/illustrations/azul-urbanismo.png';
-import mostaza from '../assets/illustrations/mostaza-herramientas.png';
-import terracota from '../assets/illustrations/terracota-trabajo.png';
-import verde from '../assets/illustrations/verde-plusvalia.png';
 import type { Axis } from '../types';
 
 /** Color por eje: propuesta de diseño (no definida por el cliente). */
@@ -10,7 +6,6 @@ export const axes: Axis[] = [
     id: 'urbanismo',
     title: 'Urbanismo',
     tone: 'crema',
-    illustration: mostaza,
     items: [
       { title: 'Diseño urbano y reglamentaciones' },
       { title: 'Gestión de suelo y desarrollo de plusvalía' },
@@ -29,7 +24,6 @@ export const axes: Axis[] = [
     id: 'arquitectura',
     title: 'Arquitectura',
     tone: 'verde',
-    illustration: verde,
     items: [
       {
         title: 'Gestión y desarrollo de proyectos y obras de interés público y patrimoniales',
@@ -45,7 +39,6 @@ export const axes: Axis[] = [
     id: 'educacion',
     title: 'Educación',
     tone: 'azul',
-    illustration: azul,
     items: [
       { title: 'Programas educativos sobre el valor del espacio urbano como sede de la identidad colectiva, orientado a la Educación Primaria' },
       { title: 'Programas educativos sobre educación mediada por tecnologías, orientado a la Educación Primaria' },
@@ -59,7 +52,6 @@ export const axes: Axis[] = [
     id: 'cultura',
     title: 'Cultura',
     tone: 'durazno',
-    illustration: terracota,
     items: [
       {
         title: 'Eventos para el desarrollo y afirmación de la identidad local',

@@ -1,5 +1,5 @@
 ---
-import { restoration } from '../../data/restoration';
+import { managementModel } from '../../data/management';
 import { url } from '../../lib/url';
 import Button from '../ui/Button.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
@@ -7,10 +7,10 @@ import SectionHeading from '../ui/SectionHeading.astro';
 
 <section id="programa" class="section bg-crema" aria-labelledby="programa-t">
   <div class="container">
-    <SectionHeading id="programa-t" eyebrow={restoration.title} title="¿Cómo funciona el programa de restauración?" />
+    <SectionHeading id="programa-t" title="Modelo de gestión" />
     <ol class="grid" data-stagger>
-      {restoration.stages.map((s) => (
-        <li><span class="n">.{String(s.n).padStart(2, '0')}</span><span class="t">{s.title}</span></li>
+      {managementModel.map((step, i) => (
+        <li><span class="n">.{String(i + 1).padStart(2, '0')}</span><span class="t">{step}</span></li>
       ))}
     </ol>
     <div class="cta" data-reveal><Button href={url('/programa-de-restauracion')}>Ver el programa completo</Button></div>

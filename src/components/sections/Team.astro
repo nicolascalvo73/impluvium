@@ -1,63 +1,45 @@
 ---
-import { advisors, executive, friends } from '../../data/team';
-import Placeholder from '../ui/Placeholder.astro';
+import { referents } from '../../data/team';
 import SectionHeading from '../ui/SectionHeading.astro';
+
+const blocks = [
+  { key: 'education', label: 'Formación' },
+  { key: 'institutional', label: 'Institucional' },
+  { key: 'independent', label: 'Independiente' },
+] as const;
 ---
 
 <section id="equipo" class="section bg-neutro" aria-labelledby="equipo-t">
   <div class="container">
     <SectionHeading id="equipo-t" eyebrow="Equipo" title="¿Quiénes integran IMPLUVIUM?" />
 
-    <h3>Comisión ejecutiva</h3>
+    <h3>Referentes</h3>
     <ul class="people" data-stagger>
-      {executive.map((m) => (
+      {referents.map((m) => (
         <li>
-          <div class="photo" role="img" aria-label={`Foto de ${m.name}: a definir`}><span>Fotos a definir</span></div>
+          <div class="photo" role="img" aria-label={`Foto de ${m.name}: a definir`}><span>Foto a definir</span></div>
           <p class="name">{m.name}</p>
-          <p class="role">{m.role ?? <Placeholder text="Cargo a definir" />}</p>
-          <p class="area">{m.area}</p>
+          <p class="role">{m.role}</p>
+          {blocks.map((b) => (
+            <div class="bio" role="group" aria-label={`${b.label} de ${m.name}`}>
+              <h4>{b.label}</h4>
+              <ul>{m[b.key].map((line) => <li>{line}</li>)}</ul>
+            </div>
+          ))}
         </li>
       ))}
     </ul>
-
-    <h3 class="advisory">Consejo asesor</h3>
-    <ul class="advisors" data-stagger>
-      {advisors.map((a) => (
-        <li><span class="area-label">{a.area}</span><span class="name">{a.name}</span></li>
-      ))}
-    </ul>
-
-    <div class="friends" data-reveal>
-      <div>
-        <h3>Entidades amigas</h3>
-        <p>{friends.name}</p>
-      </div>
-      <ul class="logos">
-        {friends.institutions.map((i) => <li>{i}</li>)}
-      </ul>
-      <p class="note"><Placeholder text="Logos a definir (pendiente de autorización)" /></p>
-    </div>
   </div>
 </section>
 
 <style>
-  .people { display: grid; gap: 28px; margin-top: 20px; }
+  .people { display: grid; gap: 40px; margin-top: 20px; }
   .photo { aspect-ratio: 4 / 3; background: #e9e9e9; display: grid; place-items: center; margin-bottom: 14px; border-radius: var(--imp-radio); color: #595959; font-size: 0.875rem; }
-  .name { font-weight: 700; color: var(--imp-negro); }
-  .role { color: var(--imp-accion); font-weight: 600; min-height: 1.6em; }
-  .area { font-size: 0.9375rem; }
-  .advisory { margin-top: 56px; }
-  .advisors { display: grid; gap: 0; margin-top: 16px; border-top: 1px solid var(--imp-gris-claro); }
-  .advisors li { display: grid; gap: 2px; padding: 14px 0; border-bottom: 1px solid var(--imp-gris-claro); }
-  .area-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--imp-gris); }
-  .friends { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--imp-gris-claro); display: grid; gap: 16px; }
-  .logos { display: flex; flex-wrap: wrap; gap: 12px; }
-  .logos li { border: 1px solid var(--imp-gris); padding: 8px 20px; font-weight: 700; color: var(--imp-negro); background: #fff; letter-spacing: 0.06em; border-radius: var(--imp-radio); }
-  @media (min-width: 768px) {
-    .people { grid-template-columns: repeat(3, 1fr); gap: 32px; }
-    .advisors { grid-template-columns: repeat(3, 1fr); column-gap: 32px; }
-    .advisors li:nth-last-child(-n + 3) { border-bottom-color: var(--imp-gris-claro); }
-    .friends { grid-template-columns: 1fr auto; align-items: center; }
-    .friends .note { grid-column: 1 / -1; }
-  }
+  .name { font-weight: 700; color: var(--imp-negro); font-size: 1.125rem; }
+  .role { color: var(--imp-accion); font-weight: 600; margin-bottom: 18px; }
+  h4 { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--imp-gris); margin: 20px 0 8px; }
+  .bio ul { display: grid; gap: 8px; font-size: 0.9375rem; }
+  .bio ul li { padding-left: 16px; position: relative; }
+  .bio ul li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; border-radius: 50%; background: var(--imp-accion); }
+  @media (min-width: 768px) { .people { grid-template-columns: repeat(2, 1fr); gap: 48px; } }
 </style>

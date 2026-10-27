@@ -7,7 +7,6 @@ export interface Axis {
   id: string;
   title: string;
   tone: 'azul' | 'durazno' | 'crema' | 'verde';
-  illustration: ImageMetadata;
   items: AxisItem[];
 }
 
@@ -30,5 +29,10 @@ export interface BackgroundItem {
   alt: string;
 }
 
-export interface TeamMember { name: string; role?: string; area: string }
-export interface Advisor { name: string; area: string }
+export interface Referent {
+  name: string;
+  role: string;
+  education: string[];
+  institutional: string[];
+  independent: string[];
+}

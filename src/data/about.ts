@@ -1,15 +1,14 @@
 export const about = {
   definition:
-    'Asociación civil creada para acompañar a Gobiernos Locales, Instituciones y Organizaciones Civiles, en tareas de creación y gestión de productos y procesos, ligados a: Urbanismo, Arquitectura, Educación y Cultura.',
+    'Una Asociación Civil creada para acompañar a Gobiernos Locales, Instituciones y Organizaciones Civiles, en tareas de creación y gestión de productos y procesos, ligados a: Urbanismo, Arquitectura, Educación y Cultura.',
   who: [
-    'Somos una asociación que busca renovar el contrato de la sociedad con su entorno urbano, con el medio ambiente, con sus instituciones y entre sí.',
+    'Buscamos renovar el contrato de la sociedad con su entorno urbano, con el medio ambiente, con sus instituciones y entre sí.',
     'Queremos generar sensibilidad en las nuevas prácticas relacionales, mediante el desarrollo de la cultura urbana y del espacio de lo público, donde la tecnología esté presente.',
-    'Tenemos el desafío de promover la actitud crítica y activa de las infancias en el medio local, la inclusión de juventudes con sus prácticas y saberes y el disfrute colectivo intergeneracional como parte de la vida en comunidad, valorizando lo propio y lo común.',
   ],
   believe: [
-    'El valor de un lugar como soporte de la vida en comunidad.',
-    'La construcción de ciudadanía enmarcada en la libertad de expresión y las buenas costumbres.',
-    'La participación crítica y activa intergeneracional en y para el habitar urbano equilibrado.',
+    'El valor de un lugar como soporte para la vida en comunidad.',
+    'La construcción de ciudadanía enmarcada en la libertad de expresión y en buenas prácticas.',
+    'La participación crítica y activa intergeneracional en y para un habitar urbano equilibrado.',
     'La gestión transversal, interdisciplinaria y colaborativa como herramienta para la concreción de proyectos de interés público.',
     'El cuidado del medio ambiente como base para la sostenibilidad de la vida urbana.',
   ],
