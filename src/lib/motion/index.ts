@@ -5,7 +5,6 @@ import { initHero } from './hero';
 import { initReveals } from './reveal';
 import { initCounters } from './counters';
 import { initPointer } from './pointer';
-import { initWheelMotion } from './wheel';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
  * Punto de entrada de las animaciones. Solo corre si el visitante no pidió reducir movimiento;
  * en ese caso el CSS no oculta nada y la página se ve en su estado final.
  * Los módulos se activan por atributos: data-reveal, data-stagger, data-img-reveal, data-count,
- * data-tilt, data-hero y data-wheel (ver cada módulo).
+ * data-tilt y data-hero (ver cada módulo).
  */
 const mm = gsap.matchMedia();
 
@@ -24,7 +23,6 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
   initReveals();
   initCounters();
   initPointer();
-  initWheelMotion();
 });
 
 export const EASE = { out: 'power3.out', soft: 'power2.out' } as const;

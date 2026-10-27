@@ -25,7 +25,7 @@ import { about } from '../../data/about';
   strong { color: var(--imp-negro); font-size: 1.0625rem; }
   .text span { font-size: 0.9375rem; color: var(--imp-texto); }
   @media (min-width: 768px) {
-    .facts { grid-template-columns: repeat(3, 1fr); }
+    .facts { grid-auto-flow: column; grid-auto-columns: 1fr; }
     li { padding: 28px 32px; }
     li + li { border-top: 0; border-left: 1px solid var(--imp-gris-claro); }
   }

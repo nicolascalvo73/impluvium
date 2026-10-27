@@ -15,7 +15,6 @@ export const about = {
   actions:
     'Nuestras acciones tienen que ver con el desarrollo de iniciativas con relación a la cultura, la educación, el urbanismo y la arquitectura, entendiendo la relación indivisible entre las dimensiones sociales, espaciales y tecnológicas. También aportamos valor en los procesos de gestión en entes gubernamentales, instituciones y empresas interesadas en la mejora continua en las prácticas del habitar urbano.',
   keyFacts: [
-    { value: '7', label: 'antecedentes', detail: '4 proyectos y 3 experiencias' },
     { value: '4', label: 'ejes de trabajo', detail: 'Educación, cultura, urbanismo y arquitectura' },
     { value: '6', label: 'etapas del programa de restauración', detail: 'De los convenios a la gestión cultural' },
   ],
