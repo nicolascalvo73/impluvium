@@ -2,6 +2,7 @@
 import { site } from '../../data/site';
 import Button from '../ui/Button.astro';
 import FormField from '../ui/FormField.astro';
+import { url } from '../../lib/url';
 ---
 
 <section id="contacto" class="section" aria-labelledby="contacto-t">
@@ -21,6 +22,7 @@ import FormField from '../ui/FormField.astro';
       <FormField id="ct-name" name="name" label="Nombre" autocomplete="name" />
       <FormField id="ct-email" name="email" label="Correo electrónico" type="email" autocomplete="email" />
       <FormField id="ct-message" name="message" label="Mensaje" type="textarea" />
+      <p class="note">Usamos tus datos solo para responderte. Más información en la <a href={url('/politica-de-privacidad')}>política de privacidad</a>.</p>
       <div><Button type="submit">Enviar</Button></div>
       <p class="form-status" data-status hidden tabindex="-1" role="status">¡Gracias! Esta es una maqueta: por ahora no se envió ningún dato. Podés escribirnos a {site.email}.</p>
     </form>
@@ -31,6 +33,7 @@ import FormField from '../ui/FormField.astro';
   .wrap { display: grid; gap: 40px; }
   address { font-style: normal; margin-top: 24px; display: grid; gap: 6px; }
   address p + p { margin-top: 0; }
+  .note { font-size: 0.875rem; color: var(--imp-gris); }
   @media (min-width: 900px) { .wrap { grid-template-columns: 1fr 1fr; gap: 80px; } }
 </style>
 

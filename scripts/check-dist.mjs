@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const dist = process.argv[2] ?? 'dist';
-const base = (process.env.BASE_PATH ?? '/impluvium').replace(/\/$/, '');
+const base = (process.env.BASE_PATH ?? '/').replace(/\/$/, '');
 
 const walk = (dir) =>
   fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(dir, e.name)) : [path.join(dir, e.name)]));

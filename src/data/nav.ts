@@ -9,3 +9,8 @@ export const navItems: (NavItem & { page?: 'programa' })[] = [
 ];
 
 export const ctaItem: NavItem = { label: 'Sumate', href: '#colaborar' };
+
+export const legalItems: NavItem[] = [
+  { label: 'Política de privacidad', href: '/politica-de-privacidad' },
+  { label: 'Términos de uso', href: '/terminos-de-uso' },
+];

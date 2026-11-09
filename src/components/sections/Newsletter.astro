@@ -1,7 +1,7 @@
 ---
 import FormField from '../ui/FormField.astro';
 import Button from '../ui/Button.astro';
-import Placeholder from '../ui/Placeholder.astro';
+import { url } from '../../lib/url';
 ---
 
 <section id="newsletter" class="section bg-durazno" aria-labelledby="newsletter-t">
@@ -15,7 +15,7 @@ import Placeholder from '../ui/Placeholder.astro';
       <div class="field">
         <label class="check" for="nl-consent">
           <input type="checkbox" id="nl-consent" name="consent" data-validate aria-describedby="nl-consent-error" />
-          <span>Acepto recibir novedades de IMPLUVIUM ac. Más información en la <Placeholder text="política de privacidad (a definir)" />.</span>
+          <span>Acepto recibir novedades de IMPLUVIUM ac. Más información en la <a href={url('/politica-de-privacidad')}>política de privacidad</a>.</span>
         </label>
         <p class="field-error" id="nl-consent-error" data-error-for="nl-consent" aria-live="polite"></p>
       </div>

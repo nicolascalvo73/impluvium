@@ -1,0 +1,44 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { site } from '../data/site';
+import { url } from '../lib/url';
+---
+
+<LegalLayout
+  title="Términos de uso"
+  description="Condiciones para usar el sitio web de IMPLUVIUM ac y su contenido."
+  lead="Las condiciones para usar este sitio y su contenido."
+  path="/terminos-de-uso"
+  updated="9 de noviembre de 2026"
+>
+  <h2>Sobre este sitio</h2>
+  <p>Este sitio pertenece a {site.fullName}, asociación civil con domicilio en {site.address}, Argentina. Al navegarlo, aceptás estos términos. Si no estás de acuerdo con ellos, te pedimos que no lo uses.</p>
+
+  <h2>Contenido informativo</h2>
+  <p>El contenido tiene fines informativos sobre nuestras actividades y proyectos. Procuramos que sea correcto y esté actualizado, pero no garantizamos que esté libre de errores. No constituye asesoramiento profesional ni una oferta vinculante.</p>
+
+  <h2>Propiedad intelectual</h2>
+  <p>Los textos, imágenes, logotipos y demás contenidos de este sitio pertenecen a {site.fullName} o a sus respectivos titulares y están protegidos por la normativa de propiedad intelectual.</p>
+  <p>Podés compartir enlaces y citar fragmentos con fines informativos o educativos, siempre que menciones la fuente. Para cualquier otro uso, incluido el comercial, necesitás nuestra autorización previa por escrito.</p>
+
+  <h2>Uso adecuado</h2>
+  <p>Te comprometés a no usar el sitio para actividades ilícitas, no intentar dañarlo ni acceder sin autorización a sus sistemas, y no enviar a través de sus formularios contenido falso, ofensivo o publicitario no solicitado.</p>
+
+  <h2>Patrocinios y colaboraciones</h2>
+  <p>Este sitio no procesa pagos ni donaciones. Los patrocinios, las donaciones y las colaboraciones profesionales se acuerdan directamente con {site.fullName} y se rigen por lo que se convenga en cada caso.</p>
+
+  <h2>Enlaces a otros sitios</h2>
+  <p>Si este sitio incluye enlaces a páginas de terceros, no somos responsables de su contenido ni de sus prácticas de privacidad.</p>
+
+  <h2>Responsabilidad</h2>
+  <p>En la medida permitida por la ley, {site.fullName} no responde por los daños derivados de interrupciones del sitio o del uso de su contenido.</p>
+
+  <h2>Datos personales</h2>
+  <p>El tratamiento de tus datos se describe en nuestra <a href={url('/politica-de-privacidad')}>política de privacidad</a>.</p>
+
+  <h2>Cambios y ley aplicable</h2>
+  <p>Podemos modificar estos términos en cualquier momento; la versión vigente es la publicada en esta página. Estos términos se rigen por las leyes de la República Argentina.</p>
+
+  <h2>Contacto</h2>
+  <p>Si tenés dudas sobre estos términos, escribinos a <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+</LegalLayout>

@@ -3,6 +3,7 @@ export const site = {
   suffix: 'ac',
   fullName: 'IMPLUVIUM ac',
   tagline: 'Proyecto, memoria y lugar',
+  homeTitle: 'IMPLUVIUM ac | Urbanismo, arquitectura, educación y cultura',
   description:
     'Asociación civil que acompaña a Gobiernos Locales, Instituciones y Organizaciones Civiles en urbanismo, arquitectura, educación y cultura. Córdoba, Argentina.',
   city: 'Córdoba, Argentina',

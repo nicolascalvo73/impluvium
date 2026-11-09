@@ -1,8 +1,7 @@
 ---
 import isotipo from '../../assets/logo/impluvium-isotipo-gris.svg';
-import { navItems } from '../../data/nav';
+import { legalItems, navItems } from '../../data/nav';
 import { site } from '../../data/site';
-import Placeholder from '../ui/Placeholder.astro';
 import { homeAnchor, url } from '../../lib/url';
 
 const resolve = (href: string) => (href.startsWith('#') ? homeAnchor(href.slice(1)) : url(href));
@@ -19,8 +18,7 @@ const resolve = (href: string) => (href.startsWith('#') ? homeAnchor(href.slice(
     </div>
     <nav aria-label="Pie de página">
       <ul>
-        {navItems.map((item) => <li><a href={resolve(item.href)}>{item.label}</a></li>)}
-        <li><Placeholder text="Política de privacidad: a definir" /></li>
+        {[...navItems, ...legalItems].map((item) => <li><a href={resolve(item.href)}>{item.label}</a></li>)}
       </ul>
     </nav>
   </div>
