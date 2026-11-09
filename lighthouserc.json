@@ -1,0 +1,27 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "npm run preview",
+      "startServerReadyPattern": "localhost:4321",
+      "url": [
+        "http://localhost:4321/impluvium/",
+        "http://localhost:4321/impluvium/programa-de-restauracion/"
+      ],
+      "numberOfRuns": 1,
+      "settings": {
+        "chromeFlags": "--headless=new --no-sandbox",
+        "onlyCategories": ["accessibility", "seo"]
+      }
+    },
+    "assert": {
+      "assertions": {
+        "categories:accessibility": ["error", { "minScore": 0.95 }],
+        "categories:seo": ["error", { "minScore": 0.95 }]
+      }
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": ".lighthouseci"
+    }
+  }
+}

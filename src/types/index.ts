@@ -1,6 +1,6 @@
 export interface NavItem { label: string; href: string }
 
-export interface AxisItem { title: string; subitems?: string[] }
+interface AxisItem { title: string; subitems?: string[] }
 export interface Axis {
   id: string;
   title: string;

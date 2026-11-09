@@ -7,7 +7,12 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "check:links": "node scripts/check-dist.mjs",
+    "check:assets": "node scripts/check-assets.mjs",
+    "check:dead": "knip",
+    "check:lighthouse": "npx -y @lhci/cli@0.16.0 autorun",
+    "verify": "npm run check:links && npm run check:assets && npm run check:dead && npm run check:lighthouse"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
@@ -17,5 +22,8 @@
     "gsap": "^3.15.0",
     "sharp": "^0.35.4",
     "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "knip": "^6.44.2"
   }
 }

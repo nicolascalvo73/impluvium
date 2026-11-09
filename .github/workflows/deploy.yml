@@ -16,6 +16,8 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: withastro/action@3eafd002e65cc31b4f0eae0bb05450d521562247 # v6
         # Sin overrides: usa los defaults de astro.config.mjs (labs.mondistudio.com.ar/impluvium).
+      # Si alguna verificación falla, el job de deploy no corre.
+      - run: npm run verify
 
   deploy:
     needs: build

@@ -13,6 +13,7 @@ npm install
 npm run dev       # http://localhost:4321/impluvium/
 npm run build     # chequea tipos y genera dist/
 npm run preview   # sirve dist/ en local
+npm run verify    # revisa enlaces, imágenes y código sin uso, accesibilidad y SEO (requiere build y Chrome)
 ```
 
 ## Estructura
@@ -30,4 +31,4 @@ src/
 
 ## Despliegue
 
-El sitio se publica en GitHub Pages con GitHub Actions (`.github/workflows/deploy.yml`) en cada push a `main`. La ruta base se define en `astro.config.mjs` (`/impluvium`) y puede sobrescribirse con las variables `SITE_URL` y `BASE_PATH`.
+El sitio se publica en GitHub Pages con GitHub Actions (`.github/workflows/deploy.yml`) en cada push a `main`, siempre que pase `npm run verify`. La ruta base se define en `astro.config.mjs` (`/impluvium`) y puede sobrescribirse con las variables `SITE_URL` y `BASE_PATH`.
