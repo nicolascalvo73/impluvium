@@ -5,7 +5,7 @@ import { site } from '../../data/site';
 import { homeAnchor, url } from '../../lib/url';
 import Button from '../ui/Button.astro';
 
-interface Props { current?: 'home' | 'programa' | 'blog' }
+interface Props { current?: 'home' | 'programa' }
 const { current = 'home' } = Astro.props;
 
 const resolve = (href: string) => (href.startsWith('#') ? homeAnchor(href.slice(1)) : url(href));

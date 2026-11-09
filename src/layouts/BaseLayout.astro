@@ -12,7 +12,7 @@ import Footer from '../components/layout/Footer.astro';
 import { site } from '../data/site';
 import { buildSeo } from '../lib/seo';
 
-interface Props { title: string; description?: string; current?: 'home' | 'programa' | 'blog'; path?: string }
+interface Props { title: string; description?: string; current?: 'home' | 'programa'; path?: string }
 const { title, description = site.description, current = 'home', path = '/' } = Astro.props;
 const seo = buildSeo({ title, description, path });
 ---

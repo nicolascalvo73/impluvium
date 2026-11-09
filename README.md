@@ -1,6 +1,6 @@
 # IMPLUVIUM ac — sitio institucional
 
-Sitio web estático de una asociación civil dedicada al urbanismo, la arquitectura, la educación y la cultura. Tiene tres páginas: Inicio, Programa de restauración y Blog.
+Sitio web estático de una asociación civil dedicada al urbanismo, la arquitectura, la educación y la cultura. Tiene dos páginas: Inicio y Programa de restauración.
 
 Hecho con [Astro](https://astro.build), sin analytics, con la tipografía Encode Sans autoalojada y animaciones con [GSAP](https://gsap.com) que respetan `prefers-reduced-motion`.
 
@@ -20,14 +20,12 @@ npm run preview   # sirve dist/ en local
 ```
 src/
 ├─ components/   # layout, sections, features (rueda del municipio, etapas) y ui
-├─ content/blog/ # entradas en Markdown (colección de contenido de Astro)
 ├─ data/         # textos y datos del sitio, separados del markup
 ├─ lib/          # SEO, rutas con base, formularios y animaciones (lib/motion)
-├─ pages/        # index, programa-de-restauracion, blog, 404
+├─ pages/        # index, programa-de-restauracion, 404
 └─ styles/       # tokens y estilos globales
 ```
 
-- **Blog:** cada entrada es un `.md` en `src/content/blog/`. Las entradas actuales son de ejemplo.
 - **Formularios:** son una maqueta. Validan y muestran un estado de éxito, pero no envían nada. Para conectar un servicio, ver `src/lib/form-config.ts` (único punto de configuración).
 
 ## Despliegue
