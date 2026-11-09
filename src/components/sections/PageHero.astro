@@ -1,13 +1,12 @@
 ---
 import SectionHeading from '../ui/SectionHeading.astro';
-interface Props { id: string; eyebrow: string; title: string; tone: 'crema' | 'azul'; lead?: string }
+interface Props { id: string; eyebrow: string; title: string; tone: 'crema'; lead?: string }
 const { id, eyebrow, title, tone, lead } = Astro.props;
 ---
 
 <section class={`page-hero bg-${tone}`} aria-labelledby={id}>
   <div class="container">
     <SectionHeading as="h1" {id} {eyebrow} {title} {lead} />
-    <slot />
   </div>
 </section>
 

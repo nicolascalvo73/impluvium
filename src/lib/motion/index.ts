@@ -24,5 +24,3 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
   initCounters();
   initPointer();
 });
-
-export const EASE = { out: 'power3.out', soft: 'power2.out' } as const;

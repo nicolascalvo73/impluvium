@@ -19,7 +19,7 @@ npm run preview   # sirve dist/ en local
 
 ```
 src/
-├─ components/   # layout, sections, features (rueda del municipio, etapas) y ui
+├─ components/   # layout, sections, features (etapas) y ui
 ├─ data/         # textos y datos del sitio, separados del markup
 ├─ lib/          # SEO, rutas con base, formularios y animaciones (lib/motion)
 ├─ pages/        # index, programa-de-restauracion, 404
